@@ -2,7 +2,6 @@ import os
 import telebot
 
 token = os.environ['TOKEN']
-
 bot = telebot.TeleBot(f'{token}')
 
 def get_photo(message):   

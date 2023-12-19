@@ -2,4 +2,4 @@
 notes.txt
 variables.py
 
-telegram_bot/input_photo/.jpg
+telegram_bot/input_photo/*.jpg

@@ -10,4 +10,3 @@ https://www.kaggle.com/datasets/fareselmenshawii/face-detection-dataset?resource
 > Зибров Василий @bazilyq
 > 
 > Селезнева Александра @alselezneva
-

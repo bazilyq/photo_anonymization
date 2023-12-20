@@ -1,0 +1,5 @@
+.venv
+notes.txt
+variables.py
+
+telegram_bot/input_photo/*.jpg

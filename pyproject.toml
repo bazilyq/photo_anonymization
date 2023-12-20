@@ -9,6 +9,9 @@ readme = "README.md"
 python = "^3.10"
 pandas = "^2.1.4"
 pytelegrambotapi = "^4.14.0"
+matplotlib = "^3.8.2"
+opencv-python = "^4.8.1.78"
+scipy = "^1.11.4"
 
 
 [build-system]

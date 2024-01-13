@@ -53,8 +53,8 @@ def get_blure_image(predict):
     return img
 
 
-def detect_face(input_path='telegram_bot/input_photo', output_path='telegram_bot/output_photo', show=False):
-    in_photo_path = f'{input_path}/image.jpg'
+def detect_face(message, input_path='telegram_bot/input_photo', output_path='telegram_bot/output_photo', show=False):
+    in_photo_path = f'{input_path}/image_{message.message_id}.jpg'
     predict = best_model.predict(in_photo_path)
     blured_img = get_blure_image(predict)
-    matplotlib.image.imsave(f"{output_path}/image.jpg", blured_img)
+    matplotlib.image.imsave(f"{output_path}/image_{message.message_id}.jpg", blured_img)

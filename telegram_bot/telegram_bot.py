@@ -9,13 +9,13 @@ def get_photo(message):
     fileID = message.photo[-1].file_id
     file_info = bot.get_file(fileID)
     downloaded_file = bot.download_file(file_info.file_path)
-    with open("telegram_bot/input_photo/image.jpg", 'wb') as new_file:
+    with open(f"telegram_bot/input_photo/image_{message.message_id}.jpg", 'wb') as new_file:
         new_file.write(downloaded_file)
     
     bot.send_message(message.from_user.id, 'Фото получено')
 
-    detect_face('telegram_bot/input_photo/', 'telegram_bot/output_photo/')
-    photo = open('telegram_bot/output_photo/image.jpg', 'rb')
+    detect_face(message, 'telegram_bot/input_photo/', 'telegram_bot/output_photo/')
+    photo = open(f'telegram_bot/output_photo/image_{message.message_id}.jpg', 'rb')
 
     bot.send_photo(message.from_user.id, photo)
 
@@ -30,7 +30,6 @@ def get_text_messages(message):
     elif message.text == "/send":
         bot.send_message(message.from_user.id, "Отправляй фото")
         bot.register_next_step_handler(message, get_photo)
-
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
 

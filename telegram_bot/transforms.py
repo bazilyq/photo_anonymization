@@ -1,12 +1,13 @@
 import cv2
 from scipy import ndimage
 import matplotlib.pyplot as plt
+import matplotlib
 from super_gradients.training import models
 import torch
 import os
 
 DEVICE = 'cuda' if torch.cuda.is_available() else "cpu"
-model_path = '/home/bazilyq/Рабочий стол/MLSD/photo_anonymization/telegram_bot/models'
+model_path = f'{os.getcwd()}/telegram_bot/models'
 best_model = models.get(
     'yolo_nas_l',
     num_classes=1,
@@ -44,10 +45,10 @@ def get_blure_image(predict):
         blur_width = int(width)
         blur_height = int(height)
 
-        roi = img[blur_y:blur_y+blur_height, blur_x:blur_x+blur_width]
+        roi = img[blur_y: blur_y + blur_height, blur_x: blur_x + blur_width]
         blur_image = cv2.GaussianBlur(roi,(51,51),0)
 
-        img[blur_y:blur_y+blur_height, blur_x:blur_x+blur_width] = blur_image
+        img[blur_y: blur_y + blur_height, blur_x: blur_x + blur_width] = blur_image
 
     return img
 
@@ -56,5 +57,4 @@ def detect_face(input_path='telegram_bot/input_photo', output_path='telegram_bot
     in_photo_path = f'{input_path}/image.jpg'
     predict = best_model.predict(in_photo_path)
     blured_img = get_blure_image(predict)
-    cv2.imwrite(f"{output_path}/image.jpg", blured_img)
-
+    matplotlib.image.imsave(f"{output_path}/image.jpg", blured_img)
